@@ -1,0 +1,32 @@
+{%extends 'base.html'%}
+
+{% block head %}
+    <title>Welcome</title>
+{% endblock %}
+
+{% block body %}
+	<div class ="container">
+
+		{% if message %}
+      	<p class="message">{{ message | safe }}</p>
+		{% endif %}
+		<form action="/encrypt" method="POST">
+
+			<div class ="form-group">
+				<h3>Text to Encrypt/Decrypt</h3>
+				<input type = "text" name = "Input" placeholder = "Input Text" />
+			</div>
+
+			<div class = "form-group">
+				<h3>Key for Encryption</h3>
+				<input type = "number" id = "key" name = "ShiftKey" min = "1" max = "26"/>
+			</div>
+
+			<input type="submit" value="Encrypt" class="btn"/>
+            <button type="submit" formaction="decrypt" class="btn">Decrypt</button>
+            {% if result %}
+                <p class = "message">{{ result | safe }}</p>
+            {% endif %}
+		</form>
+	</div>
+{% endblock %}
